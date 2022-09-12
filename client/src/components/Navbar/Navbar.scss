@@ -1,0 +1,19 @@
+.navbar{
+    background-color: var(--grey) !important;
+    border-bottom: 2px solid var(--white);
+    align-items: center;
+    .navbar-brand,.nav-link{
+        color:var(--white) !important;
+    }
+    .nav-link{
+        gap:30px;
+       
+    }
+    font-size: 20px;
+    .active{
+        background-color: var(--green);
+        color: var(--white) !important;
+        border-radius: 30px;
+        
+    }
+}
