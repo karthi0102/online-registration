@@ -3,6 +3,7 @@ const app = express()
 const mongoose=require("mongoose")
 const cors=require("cors")
 const userRoutes = require('./routes/user.js')
+const courseRoutes= require('./routes/course.js')
 const DATABASE_URL = 'mongodb+srv://karthi:karthi12003@edulearn.otd1ji6.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(DATABASE_URL,{useNewUrlParser:true,useUnifiedTopology:true})
 .then( () => {
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors())
 app.use('/user',userRoutes)
+app.use('/course',courseRoutes)
 app.get('/',(req,res)=>{
     res.send('edu learn website')
 })

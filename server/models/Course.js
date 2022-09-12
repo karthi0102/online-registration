@@ -1,4 +1,4 @@
-const mongoose = require('moongose')
+const mongoose = require('mongoose')
 const {Schema}=mongoose
 
 const courseSchema =  new Schema({
@@ -18,6 +18,10 @@ const courseSchema =  new Schema({
             type:String,
             required:true,
         },
+        img:{
+            type:String,
+            required:true
+        },
         duration:{
             type:Number,
             required:true,
@@ -29,6 +33,10 @@ const courseSchema =  new Schema({
                     required:true,
                 },
                 link:{
+                    type:String,
+                    required:true,
+                },
+                id:{
                     type:String,
                     required:true,
                 }
