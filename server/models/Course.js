@@ -4,7 +4,7 @@ const {Schema}=mongoose
 const courseSchema =  new Schema({
         createdBy:{
             type:Schema.Types.ObjectID,
-            ref:"user"
+            ref:"User"
         },
         cost:{
             type:Number,

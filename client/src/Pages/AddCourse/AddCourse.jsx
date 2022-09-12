@@ -49,7 +49,7 @@ const AddCourse = () => {
             <div className="addcourse-form mt-5">
                     <div className="row">
                         <div className="col-8 offset-2">
-                            <h2 className='text-center'>Add Your New Course karthi</h2>
+                            <h2 className='text-center'>Add Your New Course</h2>
                             <div className="card shadow mt-2">
                                 <div className="card-body">
                                     <form className='row gx-5' onSubmit={handleSubmit} >

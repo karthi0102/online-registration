@@ -6,11 +6,12 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 const Home = () => {
   const courses =  useSelector((state) => (state.courseReducer))
+  
   return (
     <>
 
     {
-      courses === null ? <h2>Loading</h2> :
+      courses.data === null ? <h2>Loading</h2> :
     
     <div className='home-container'>
         <Navbar />
@@ -20,7 +21,9 @@ const Home = () => {
         </div>
         <div className="row  my-5">
           <div className="col-4">
-          <Card />
+          {courses?.data.map(course => (
+            <Card course={course} key={course._id} />
+          ))}
           </div>
         </div>
         </div>

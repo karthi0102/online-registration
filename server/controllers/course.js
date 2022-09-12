@@ -3,10 +3,12 @@ const Course = require('../models/Course.js')
 
 module.exports.getAllCourse = async(req,res)=>{
     try{
-        const course=await Course.find();
+        const course=await Course.find().populate('createdBy');
+    
         res.status(200).json(course);
     }catch(err){
-        res.status(500).send("Server.error")
+        console.log(err.message)
+        res.status(500).send("Server error")
     }
 }
 

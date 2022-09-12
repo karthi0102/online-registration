@@ -14,6 +14,6 @@ export const getAllCourse = () =>async(dispatch) =>{
         const {data} = await api.getAllCourse();
         dispatch({type:'FETCH_ALL_COURSE',payload:data})
     } catch (err) {
-        console.lof(err.message)
+        console.log(err.message)
     }
 }
