@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { signUp } from '../../actions/auth'
 import './SignUp.scss'
 const SignUp = () => {
-  const [name,setName]=useState('karthikeyan')
-  const [email,setEmail]=useState('karthirajendran12003@gmail.com')
-  const [password,setPassword]=useState('qwerty')
+  const [name,setName]=useState('')
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
 
   const dispatch=useDispatch()
   const navigate =useNavigate()

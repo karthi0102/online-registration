@@ -10,7 +10,7 @@ const Card = ({course}) => {
     <div className="card-body">
 
     <div className="img-container mb-3">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR533f2Wg9gzzXVTLxQ3P5GLNJEzqd1H6pN3Q&usqp=CAU" alt="img" />
+        <img src={course.img ? course.img :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR533f2Wg9gzzXVTLxQ3P5GLNJEzqd1H6pN3Q&usqp=CAU'} alt="img" />
     </div>
         <p className="card-title">{course.name}</p>
                     <p className="card-author">{course.createdBy.name} | Tutor</p>

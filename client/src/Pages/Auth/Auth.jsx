@@ -4,8 +4,6 @@ import Login from '../../components/Login/Login'
 import Logo from '../../components/Logo/Logo'
 import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
-import decode from 'jwt-decode'
-import { setCurrentUser } from '../../actions/currentUser'
 import './Auth.scss'
 
 const Auth = () => {
@@ -17,30 +15,8 @@ const Auth = () => {
         isLogin(!login)
     }
 
-     useEffect(()=>{
-        const result = JSON.parse(localStorage.getItem("EduLearn"))
-        const token=result?.token;
-      
-        if(token){
-                const decodedToken = decode(token)
-                if(decodedToken.exp *1000  < new Date().getTime()){
-                    handleLogout()
-                    return
-                }
-                navigate('/home')
-                
-                 
-                
-        }
-        dispatch(setCurrentUser(JSON.parse(localStorage.getItem("EduLearn"))))
-      
-    },[dispatch])
+    
 
-    const handleLogout = () =>{
-        dispatch({type:"LOGOUT"})
-        navigate('/')
-        dispatch(setCurrentUser(null))   
-    }
 
   return (
     <div className='auth-container container mt-5'>

@@ -34,7 +34,6 @@ const AddCourse = () => {
     }
     const handleSubmit = (e)=>{
         e.preventDefault();
-
         dispatch(createCourse({name,img,cost,desc,duration,createdBy,videos},navigate))
 
     }

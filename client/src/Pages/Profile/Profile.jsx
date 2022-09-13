@@ -1,9 +1,9 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import Logo from '../../components/Logo/Logo'
 import SideBar from '../../components/SideBar/SideBar'
-import {useSelector,useDispatch} from 'react-redux'
-import { setCurrentUser } from '../../actions/currentUser'
+import {useSelector} from 'react-redux'
+
 
 import './Profile.scss'
 
@@ -22,21 +22,21 @@ const Profile = () => {
                           <Logo />
                           <div className="public-profile-details my-5">
                                 <div className="profile-avator shadow">
-                                     K
+                                     {User?.result?.name.charAt(0)}
                                 </div>
                                 <div className="profile-name my-3 shadow">
                                   {User?.result?.name}
                                 </div>
                                 <div className="profile-email my-3 shadow">
-                                  karthi@gmail.com
+                                  {User?.result?.email}
                                 </div>
                                 <div className="profile-courses-enrolled my-3 shadow">
-                                  COURSES ENROLLED - <span> 10 </span>
+                                  COURSES ENROLLED - <span> {User.result.enrolled.length} </span>
                                 </div>
                           </div>
                       </div>
 
-                </div>``
+                </div>
     </div>
   )
 }

@@ -32,7 +32,7 @@ module.exports.login = async(req,res) =>{
         if(!isPasswordCrt){
             return res.status(400).json({message:"Invalid credentials"})
         }
-        const token = jwt.sign({email:existinguser.email,id:existinguser._id},'token',{expiresIn:'360000'})
+        const token = jwt.sign({email:existinguser.email,id:existinguser._id},'token',{expiresIn:'48h'})
         res.status(200).json({result:existinguser,token})
     }catch(err){
         res.status(500).json(err.message)
