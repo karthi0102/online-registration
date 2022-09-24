@@ -38,3 +38,13 @@ module.exports.login = async(req,res) =>{
         res.status(500).json(err.message)
     }
 }
+
+module.exports.editProfile = async(req,res) =>{
+    const {name,phone,skill,id} = req.body;
+    try {
+        console.log(name,phone,skill,id)
+        res.send("success");
+    } catch (err) {
+        res.status(500).json({msg:"Internal server error"})
+    }
+}

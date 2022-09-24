@@ -10,7 +10,7 @@ import './Profile.scss'
 const Profile = () => {
  
   const User=useSelector((state) => (state.currentUserReducer) )
-  
+  const myCourse = useSelector((state) => (state.enrolledReducer))
   return (
     <div className='profile-container'>
                 <Navbar/>
@@ -31,7 +31,7 @@ const Profile = () => {
                                   {User?.result?.email}
                                 </div>
                                 <div className="profile-courses-enrolled my-3 shadow">
-                                  COURSES ENROLLED - <span> {User.result.enrolled.length} </span>
+                                  COURSES ENROLLED - <span> {myCourse.data.enrolled.length} </span>
                                 </div>
                           </div>
                       </div>

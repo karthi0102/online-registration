@@ -1,9 +1,30 @@
 import React from 'react'
 import './DetailsCard.scss'
 import Spinner from '../Spinner/Spinner'
-import { useState } from 'react'
-const DetailsCard = ({course}) => {
+import { useNavigate } from 'react-router-dom'
+import { useDispatch,useSelector } from 'react-redux'
+import { enrollCourse } from '../../actions/course'
+import { useEffect } from 'react'
+import { getEnrolledCourse } from '../../api'
 
+const DetailsCard = ({course}) => {
+    const User = useSelector((state) => (state.currentUserReducer))
+    const myCourse = useSelector((state) => (state.enrolledReducer))
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const handleSubmit = () =>{
+
+        
+        const id =  User.result._id
+        
+        const course_id =  course._id
+        dispatch(enrollCourse(id,course_id,navigate))
+    }
+
+    const enrolled = myCourse?.data?.enrolled.filter(m => m._id == course._id)
+    console.log(enrolled);
+    
   return (
     <>
      {course ==null ? <Spinner /> :
@@ -21,7 +42,10 @@ const DetailsCard = ({course}) => {
                       <p className='course-description'>{course.desc}</p>
                       <p className="course-amount">₹{course.cost}</p>
                       <p className="course-duration">Duration : {course.duration}hours</p>
-                      <p className='course-enroll-button'>ENROLL NOW</p>
+                    {enrolled[0]?._id!=course._id ?<button onClick={handleSubmit} className='course-enroll-button btn'>ENROLL NOW</button> :'' }
+
+                  
+                     
                 </div>
             </div>
             </div>

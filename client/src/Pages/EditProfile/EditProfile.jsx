@@ -1,11 +1,23 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './EditProfile.scss'
 import Navbar from '../../components/Navbar/Navbar'
 import SideBar from '../../components/SideBar/SideBar'
 import Logo from '../../components/Logo/Logo'
-import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useSelector,useDispatch } from 'react-redux'
+import  {editProfile} from '../../actions/auth'
 const EditProfile = () => {
   const User = useSelector((state)=>(state.currentUserReducer))
+  const dispatch = useDispatch()
+  const navigate=useNavigate()
+  const [name,setName]=useState(User?.result?.name)
+  const [skill,setSkill] =useState()
+  const [phone,setPhone]=useState()
+  const id=User.result._id
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    dispatch(editProfile({name,skill,phone,id},navigate))
+  }
   return (
       <div className="edit-profile-container">
         <Navbar />
@@ -15,32 +27,29 @@ const EditProfile = () => {
           </div>
           <div className="col-9">
                 <Logo />
-                <div className="edit-form-container">
+                <div className="edit-form-container mt-2">
                 <div className="card shadow">
                   <div className="card-body">
-                      <form>
+                      <form onSubmit={handleSubmit}>
                          <div className="form-group mb-3">
                           <label  className="form-label">Name</label>
-                          <input type="tel" className="form-control" value={User?.result?.name}  />
+                          <input type="tel" className="form-control" value={name} onChange={e => setName(e.target.value)}  />
                         </div>
                         <div className="form-group mb-3">
                           <label  className="form-label">Email</label>
-                          <input type="email" className="form-control" value={User?.result?.email}/>
+                          <input type="email" className="form-control" value={User?.result?.email} readOnly/>
                         </div>
   
                         <div className="form-group mb-3">
                           <label  className="form-label">Phone Number</label>
-                          <input type="tel" className="form-control"  />
+                          <input type="tel" className="form-control" value={phone} onChange={e => setPhone(e.target.value)}  />
                         </div>
                         <div className="form-group mb-3">
                           <label className="form-label">Skills</label>
-                          <input type="text" placeholder="Ex: html,css" className="form-control" />
+                          <input type="text" placeholder="Ex: html,css" className="form-control"   onChange={(e) => setSkill(e.target.value.split(' '))} />
                         </div>
                         
-                        <div className="form-group mb-3">
-                          <label className="form-label">Languages Known</label>
-                          <input type="text" placeholder="Ex:English,Tamil" className="form-control" />
-                        </div>
+                      
                         <div className="d-grid gap-8">
                           <button className="btn">Update Profile</button>
                         </div>

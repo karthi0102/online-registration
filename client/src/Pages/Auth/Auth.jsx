@@ -26,11 +26,11 @@ const Auth = () => {
             
             <> 
             <Login /> 
-            <p className='text-center mt-4 switch-content' >Dont Have an account <span onClick={handleSwitch}>New User ? </span></p>
+            <p className='text-center mt-4 switch-content' >Dont Have an account <span onClick={handleSwitch}>New User?</span></p>
              </>
             : <> 
             <SignUp />
-             <p  className='text-center mt-4 switch-content' >Already a User <span onClick={handleSwitch}> Login ?</span></p>
+             <p  className='text-center mt-4 switch-content' >Already a User <span onClick={handleSwitch}> Login?</span></p>
               </>
         }
     </div>

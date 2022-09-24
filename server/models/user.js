@@ -5,6 +5,8 @@ const userSchema = new Schema({
     name:String,
     email:String,
     password:String,
+    phone:String,
+    skills:[String],
     joinedOn:{
         type:Date,
         default:Date.now
@@ -16,7 +18,7 @@ const userSchema = new Schema({
     enrolled:[
         {
             type:Schema.Types.ObjectId,
-            ref:'course'
+            ref:'Course'
         }
     ],
 

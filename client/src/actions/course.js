@@ -17,3 +17,16 @@ export const getAllCourse = () =>async(dispatch) =>{
         console.log(err.message)
     }
 }
+
+
+export const enrollCourse = (id,course_id,navigate) => async(dispatch) =>{
+    try {
+        
+        const {data} = await api.enrollCourse(id,course_id)
+        navigate('/home')
+            
+    } catch (err) {
+            console.log(err.message)
+    }
+}
+

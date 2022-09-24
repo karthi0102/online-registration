@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 const API = axios.create({baseURL:'http://localhost:8080/'})
 
 
@@ -7,3 +8,8 @@ export const signUp = (authData) => API.post('/user/signup',authData)
 
 export const getAllCourse = () => API.get('/course');
 export const createCourse = (courseData) =>API.post("/course",courseData);
+
+export const enrollCourse = (id,course_id) =>API.post('/course/enroll',{id,course_id})
+export const getEnrolledCourse = (id) => API.get(`/course/${id}`)
+
+export const editProfile = (editData) =>API.patch('/user/profile',editData)

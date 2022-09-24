@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 
 import { useSelector,useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -7,11 +7,7 @@ import './Navbar.scss'
 const Navbar = () => {
   const dispatch=useDispatch();
   
-  useEffect(()=>{
-    dispatch(setCurrentUser(JSON.parse(localStorage.getItem("EduLearn"))))
-  },[dispatch])
-
-  
+ 
   return (
     <nav className="navbar navbar-expand-md bg-light">
     <div className="container-lg">
@@ -27,7 +23,7 @@ const Navbar = () => {
                 <NavLink to='/home' className="nav-link" activeclassname='active'>HOME</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to='/courses' className='nav-link' activeclassname='active' >MY COURSES</NavLink>
+              <NavLink to='/mycourses' className='nav-link' activeclassname='active' >MY COURSES</NavLink>
             </li>
             <li className="nav-item">
                 <NavLink to='/addcourse' className="nav-link" activeclassname='active'>ADD COURSE</NavLink>

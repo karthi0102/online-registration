@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import Navbar from '../../components/Navbar/Navbar'
 import { useEffect } from 'react'
 import DetailsCard from '../../components/DetailsCard/DetailsCard'
-
+import Spinner from '../../components/Spinner/Spinner'
 
 const CourseDetail = () => {
  
@@ -15,7 +15,7 @@ const CourseDetail = () => {
   return (
     <div className="course-detail-container">
           <Navbar />
-          {courses.data=== null ? <h2>Loading</h2> : 
+          {courses.data=== null ? <Spinner /> : 
             <div className="course-detail-container">
                 {
                   courses.data.filter(course => course._id===id).map(course =>(
