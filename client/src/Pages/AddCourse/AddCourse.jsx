@@ -45,7 +45,7 @@ const AddCourse = () => {
   return (
    <div className="addcourse-container">
             <Navbar />
-            <div className="addcourse-form mt-5">
+            <div className="addcourse-form my-5">
                     <div className="row">
                         <div className="col-8 offset-2">
                             <h2 className='text-center'>Add Your New Course</h2>
@@ -62,12 +62,13 @@ const AddCourse = () => {
                             </div>
                             <div className="form-group mb-3">
                                 <label  className="form-label">Course Description</label>
-                                <input type="text" className="form-control" value={desc} onChange={e => setDesc(e.target.value)} />
+                                <textarea type="text" className="form-control" value={desc} onChange={e => setDesc(e.target.value)} />
                             </div>
                             <div className="form-group mb-3">
                                 <label  className="form-label">Course Duration (in hrs)</label>
                                 <input type="number" className="form-control" value={duration} onChange={e => setDuration(e.target.value)} / >
                             </div>
+                            
                             <div className="form-group mb-3">
                                 <label  className="form-label">Course Cost (in ₹)</label>
                                 <input type="number" className="form-control" value={cost} onChange={e => setCost(e.target.value)} / >

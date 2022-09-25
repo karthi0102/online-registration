@@ -8,15 +8,16 @@ import { useSelector,useDispatch } from 'react-redux'
 import  {editProfile} from '../../actions/auth'
 const EditProfile = () => {
   const User = useSelector((state)=>(state.currentUserReducer))
+  const Details = useSelector((state) => (state.detailsReducer))
   const dispatch = useDispatch()
   const navigate=useNavigate()
   const [name,setName]=useState(User?.result?.name)
-  const [skill,setSkill] =useState()
-  const [phone,setPhone]=useState()
+  const [skills,setSkill] =useState()
+  const [phone,setPhone]=useState(Details.data.phone)
   const id=User.result._id
   const handleSubmit = (e) =>{
     e.preventDefault()
-    dispatch(editProfile({name,skill,phone,id},navigate))
+    dispatch(editProfile({name,skills,phone,id},navigate))
   }
   return (
       <div className="edit-profile-container">
@@ -48,7 +49,6 @@ const EditProfile = () => {
                           <label className="form-label">Skills</label>
                           <input type="text" placeholder="Ex: html,css" className="form-control"   onChange={(e) => setSkill(e.target.value.split(' '))} />
                         </div>
-                        
                       
                         <div className="d-grid gap-8">
                           <button className="btn">Update Profile</button>

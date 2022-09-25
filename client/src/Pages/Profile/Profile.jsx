@@ -3,14 +3,12 @@ import Navbar from '../../components/Navbar/Navbar'
 import Logo from '../../components/Logo/Logo'
 import SideBar from '../../components/SideBar/SideBar'
 import {useSelector} from 'react-redux'
-
-
+import moment from 'moment'
 import './Profile.scss'
 
 const Profile = () => {
- 
   const User=useSelector((state) => (state.currentUserReducer) )
-  const myCourse = useSelector((state) => (state.enrolledReducer))
+  const Details = useSelector((state) => (state.detailsReducer))
   return (
     <div className='profile-container'>
                 <Navbar/>
@@ -22,16 +20,17 @@ const Profile = () => {
                           <Logo />
                           <div className="public-profile-details my-5">
                                 <div className="profile-avator shadow">
-                                     {User?.result?.name.charAt(0)}
+                                     {Details.data.name.charAt(0)}
                                 </div>
+                                <p className='text-muted'>Joined On - {moment(Details?.data?.joinedOn).fromNow()}</p>
                                 <div className="profile-name my-3 shadow">
-                                  {User?.result?.name}
+                                  {Details?.data?.name}
                                 </div>
                                 <div className="profile-email my-3 shadow">
-                                  {User?.result?.email}
+                                  {Details?.data?.email}
                                 </div>
                                 <div className="profile-courses-enrolled my-3 shadow">
-                                  COURSES ENROLLED - <span> {myCourse.data.enrolled.length} </span>
+                                  COURSES ENROLLED - <span> {Details.data.enrolled.length} </span>
                                 </div>
                           </div>
                       </div>

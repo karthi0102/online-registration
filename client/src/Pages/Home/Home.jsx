@@ -5,30 +5,28 @@ import { useDispatch } from 'react-redux'
 import Navbar from '../../components/Navbar/Navbar'
 import Card from '../../components/Card/Card'
 import Spinner from '../../components/Spinner/Spinner'
-import { setCurrentUser } from '../../actions/currentUser'
+
 import './Home.scss'
 import { useEffect } from 'react'
-import { getEnrolledCourse } from '../../actions/enrolled'
+
 
 
 
 const Home = () => {
   const courses =  useSelector((state) => (state.courseReducer))
   
+
   const [dataList,setDataList]=useState([])
   const [key,setKey]=useState('')
   
   const dispatch =  useDispatch()
   useEffect(()=>{
         const User = JSON.parse(localStorage.getItem('EduLearn'))
-        dispatch(getEnrolledCourse(User.result._id))
+        
   },[dispatch])
  
-  
-  
   return (
     <>
-
     {
       courses.data === null ? <Spinner /> :
     
@@ -47,10 +45,10 @@ const Home = () => {
             </datalist> */}
             
         </div>
-        <div className="row  my-5">
-          
-          {courses?.data.map(course => (
-            <div className="col-4 mb-3" key={course._id}>
+        <div className="row  my-5 d-flex justify-content-center">
+          {courses.data.length==0 && <h2 className='text-center my-5'>No courses Uploaded</h2> }
+          {courses.data.map(course => (
+            <div className="col-sm-6 col-md-4 col-lg-3 mb-3" key={course._id}>
             <Card course={course}  />
             </div>
           ))}

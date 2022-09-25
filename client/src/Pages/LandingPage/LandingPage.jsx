@@ -4,12 +4,13 @@ import {useNavigate} from 'react-router-dom'
 import Spinner from '../../components/Spinner/Spinner'
 import { setCurrentUser } from '../../actions/currentUser'
 import decode from 'jwt-decode'
-import { getEnrolledCourse } from '../../actions/enrolled'
 
+import { defaultDetails } from '../../actions/myDetails'
 const LandingPage = () => {
     const dispatch=useDispatch()
     const navigate = useNavigate()
     useEffect(()=>{
+      
         const result = JSON.parse(localStorage.getItem("EduLearn"))
         const token=result?.token;
       if(!result){
@@ -22,20 +23,19 @@ const LandingPage = () => {
                     handleLogout()
                     return
                 }
-                dispatch(getEnrolledCourse(result.result._id))
+              
+               
                 navigate('/home')
-                
-                 
-                
         }
         dispatch(setCurrentUser(JSON.parse(localStorage.getItem("EduLearn"))))
-      
+        dispatch(defaultDetails())
     },[dispatch])
     
     const handleLogout = () =>{
         dispatch({type:"LOGOUT"})
         navigate('/Auth')
         dispatch(setCurrentUser(null))   
+        
     }
     
   return (

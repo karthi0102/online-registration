@@ -2,6 +2,7 @@ import React,{ useEffect } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { getAllCourse } from './actions/course';
 import { useDispatch } from 'react-redux';
+
 import { setCurrentUser } from './actions/currentUser';
 import AllRoutes from './AllRoutes';
 
@@ -12,6 +13,7 @@ function App() {
   useEffect(()=>{
     dispatch(getAllCourse())
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem('EduLearn'))))
+   
   },[dispatch])
 
   return (

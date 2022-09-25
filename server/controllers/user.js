@@ -7,7 +7,7 @@ module.exports.signUp = async(req,res)=>{
    
     const {name,email,password} = req.body
     try {
-        const existinguser=await User.findOne({email})
+        const existinguser=await User.findOne({email}).populate('enrolled')
         if(existinguser){
             return res.status(400).json({message:'User already found..'})
         }
@@ -24,7 +24,7 @@ module.exports.signUp = async(req,res)=>{
 module.exports.login = async(req,res) =>{
     const {email,password} = req.body;
     try{
-        const existinguser = await User.findOne({email})
+        const existinguser = await User.findOne({email}).populate('enrolled')
         if(!existinguser){
             return res.status(404).json({message:"User not found..."})
         }
@@ -40,11 +40,39 @@ module.exports.login = async(req,res) =>{
 }
 
 module.exports.editProfile = async(req,res) =>{
-    const {name,phone,skill,id} = req.body;
+    const {name,phone,skills,id} = req.body;
     try {
-        console.log(name,phone,skill,id)
-        res.send("success");
+    const user = await User.findByIdAndUpdate(id,{$set : {phone,skills,name}},{upSert:true})
+    await user.save();
+    res.status(200).json({msg:"Success"})
     } catch (err) {
         res.status(500).json({msg:"Internal server error"})
+    }
+}
+
+module.exports.setMentor = async(req,res)=>{
+    const {phone,skills,experience,language,isMentor,id} = req.body
+    console.log(phone,skills,experience,language,isMentor,id)
+    try {
+        const user = await User.findByIdAndUpdate(id,{$set:{phone,skills,experience,language,isMentor}},{upsert:true})
+        await user.save();
+        res.status(200).json({msg:"successfull"})
+    } catch (err) {
+        res.status(500).json({msg:'Internal server error'})
+    }
+}
+
+
+module.exports.myDetails = async(req,res) =>{
+       const {id} = req.params
+    try {
+       
+        const user =await User.findById(id).populate('enrolled')
+        console.log(user)
+        res.status(200).json(user)
+
+    } catch (err) {
+         console.log(err.message)
+        res.status(500).json({msg:'User not Found'})
     }
 }

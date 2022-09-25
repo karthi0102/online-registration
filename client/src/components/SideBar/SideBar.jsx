@@ -1,10 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { setCurrentUser } from '../../actions/currentUser'
 import './SideBar.scss'
 const SideBar = () => {
+  const User = useSelector((state) => (state.currentUserReducer))
+  const Details= useSelector((state) =>(state.detailsReducer))
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const handleLogout = () =>{
@@ -18,7 +20,8 @@ const SideBar = () => {
    <nav className='profile-sidebar'>
     <NavLink to='/profile/public' className='side-nav-bar' activeclassname='active' >Public Profile</NavLink>
     <NavLink to='/profile/edit' className='side-nav-bar' activeclassname='active'>Edit Profile</NavLink>
-    <NavLink to='/profile/teach' className='side-nav-bar' activeclassname='active'>Teach on Edulearn</NavLink>
+    {!Details.data.isMentor &&  <NavLink to='/profile/teach' className='side-nav-bar' activeclassname='active'>Teach on Edulearn</NavLink>}
+   
     <p className='side-nav-bar' onClick={handleLogout}>Logout</p>
    </nav>
   )

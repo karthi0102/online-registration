@@ -5,25 +5,22 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch,useSelector } from 'react-redux'
 import { enrollCourse } from '../../actions/course'
 import { useEffect } from 'react'
-import { getEnrolledCourse } from '../../api'
+
 
 const DetailsCard = ({course}) => {
     const User = useSelector((state) => (state.currentUserReducer))
-    const myCourse = useSelector((state) => (state.enrolledReducer))
+    const Details = useSelector((state) => (state.detailsReducer))
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const handleSubmit = () =>{
-
-        
         const id =  User.result._id
-        
         const course_id =  course._id
         dispatch(enrollCourse(id,course_id,navigate))
     }
 
-    const enrolled = myCourse?.data?.enrolled.filter(m => m._id == course._id)
-    console.log(enrolled);
+    const enrolled = Details?.data?.enrolled.filter(m => m._id == course._id)
+ 
     
   return (
     <>

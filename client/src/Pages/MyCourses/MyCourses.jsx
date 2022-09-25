@@ -7,27 +7,27 @@ import Spinner from '../../components/Spinner/Spinner'
 
 const MyCourses = () => {
   
-    const myCourse = useSelector((state) => (state.enrolledReducer))
+   
+    const Details =  useSelector((state) => (state.detailsReducer))
     
-    
-
+   
   return (
     <div className="my-course-details-container">
       <Navbar />
-          {myCourse.data==null ? <Spinner  />:
+          {Details.data==null ? <Spinner  />:
           <div className="container my-5">
       <div className="row d-flex justify-content-center">
-        {myCourse.data.enrolled.map(course => (
-         <div className="col-4" key={course._id}>
-          <Card course={course} />
+        {Details.data.enrolled.length==0 && <h2 className='text-center my-5'>NO COURSES ENROLLED</h2>}
+        {Details?.data.enrolled.map(course => (
+         <div className="col-sm-6 col-md-4 col-lg-3 my-3" key={course._id}>
+                  <Card course={course} />
          </div>
         ))}
         </div>
       </div>
-
 }
-
     </div>
+
   )
 }
 
