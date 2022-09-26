@@ -5,26 +5,30 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch,useSelector } from 'react-redux'
 import { enrollCourse } from '../../actions/course'
 import { useEffect } from 'react'
-
+import Payment from '../Payment/Payment'
+import { useState } from 'react'
 
 const DetailsCard = ({course}) => {
     const User = useSelector((state) => (state.currentUserReducer))
     const Details = useSelector((state) => (state.detailsReducer))
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [payment,setPayment]=useState(false)
 
     const handleSubmit = () =>{
-        const id =  User.result._id
-        const course_id =  course._id
-        dispatch(enrollCourse(id,course_id,navigate))
+        // const id =  User.result._id
+        // const course_id =  course._id
+        // dispatch(enrollCourse(id,course_id,navigate))
+        setPayment(!payment)
     }
 
     const enrolled = Details?.data?.enrolled.filter(m => m._id == course._id)
- 
+    
     
   return (
     <>
      {course ==null ? <Spinner /> :
+     
      <div className="details-card-container container mt-5">
         <div className="row first-container shadow">
             <div className="col-4">
@@ -39,10 +43,7 @@ const DetailsCard = ({course}) => {
                       <p className='course-description'>{course.desc}</p>
                       <p className="course-amount">₹{course.cost}</p>
                       <p className="course-duration">Duration : {course.duration}hours</p>
-                    {enrolled[0]?._id!=course._id ?<button onClick={handleSubmit} className='course-enroll-button btn'>ENROLL NOW</button> :'' }
-
-                  
-                     
+                    {enrolled[0]?._id!=course._id ?<button onClick={handleSubmit} className='course-enroll-button btn'>ENROLL NOW</button> :'' }                     
                 </div>
             </div>
             </div>
@@ -68,8 +69,16 @@ const DetailsCard = ({course}) => {
                   </div>
               </div>
             </div>
+              <div className="payment shadow">
+                
+            {payment &&  <Payment handleDisplay={handleSubmit} user={User} course={course} />}
+                </div>
+            
             </div>
+          
+           
 }
+
     </>    
   
     
